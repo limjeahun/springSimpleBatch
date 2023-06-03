@@ -1,0 +1,30 @@
+server:
+  port: 9191
+
+# database 연결
+spring:
+  batch:
+    job:
+      names: ${job.name:NONE}
+      enabled: false
+    jdbc:
+      initialize-schema: EMBEDDED
+  datasource:
+    url: jdbc:mariadb://localhost:3306/CP_C3
+    driver-class-name: org.mariadb.jdbc.Driver
+    username: c3
+    password: 1111
+
+
+  # jpa table 네이밍 대소문자 구분 여부
+  jpa:
+    hibernate:
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    # sql 문 로그 
+    properties:
+      hibernate:
+        show_sql: true
+        dialect: org.hibernate.dialect.MariaDBDialect
+        query:
+          interceptor: com.querydsl.jpa.impl.JPAQueryFactory
